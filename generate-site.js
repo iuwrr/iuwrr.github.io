@@ -111,15 +111,20 @@ img { max-width: 100%; height: auto; display: block; }
   max-width: var(--max-w-wide); margin: 0 auto; padding: 0 24px;
   height: 100%; display: flex; align-items: center; justify-content: space-between;
 }
-.nav-brand { display: flex; align-items: center; gap: 10px; }
+.nav-brand { display: flex; align-items: center; gap: 12px; }
+.nav-logo-link { display: flex; flex-shrink: 0; }
 .nav-logo {
-  width: 32px; height: 32px; border-radius: 8px;
-  object-fit: cover; flex-shrink: 0;
+  height: 40px; width: auto; border-radius: 8px;
+  object-fit: contain; flex-shrink: 0;
 }
+.nav-brand-text { display: flex; flex-direction: column; gap: 1px; }
 .nav-name {
   font-size: 1.05rem; font-weight: 600; letter-spacing: -0.01em;
-  color: var(--text-primary);
+  color: var(--text-primary); line-height: 1.3;
 }
+.nav-sub { font-size: 0.68rem; color: var(--text-tertiary); letter-spacing: 0.01em; }
+.nav-sub a { color: var(--text-tertiary); }
+.nav-sub a:hover { color: var(--text-secondary); }
 .nav-links { display: flex; align-items: center; gap: 28px; }
 .nav-link {
   font-size: 0.82rem; font-weight: 400; color: var(--text-secondary);
@@ -644,8 +649,13 @@ function main() {
 <nav class="nav">
     <div class="nav-inner">
         <div class="nav-brand">
-            <img class="nav-logo" src="${esc(fixImg(meta.siteLogo || '', siteUrl))}" alt="${esc(siteName)}">
-            <span class="nav-name">${esc(siteName)}</span>
+            <a class="nav-logo-link" href="${siteUrl}" target="_blank" rel="noopener">
+                <img class="nav-logo" src="${esc(fixImg(meta.siteLogo || '', siteUrl))}" alt="${esc(siteName)}">
+            </a>
+            <div class="nav-brand-text">
+                <span class="nav-name">${esc(siteName)}</span>
+                <span class="nav-sub">新商城网址：<a href="${siteUrl}" target="_blank" rel="noopener">${esc(siteUrl)}</a></span>
+            </div>
         </div>
         <div class="nav-links">
             <a href="${siteUrl}" target="_blank" rel="noopener" class="nav-link">全部商品</a>
